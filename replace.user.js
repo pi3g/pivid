@@ -7,15 +7,17 @@ function main() {
 
 		// if none of the above apply try html5 video
 		"html5": function () {
-			console.log(window.location.hostname);
+			var vid = ""
 			$("video").find("source").each(function() {
-				console.log($(this)[0].id);
+				var src = $(this).attr("src");
+				if (/.mp4$/.test(src)) {
+					vid = src;
+				}
 			});
-			console.log($("video"));
 			var width = $("video").width()
 			var height = $("video").height()
-			$("video").before("<iframe src='http://localhost:1234' width='" +
-				width + "' height='" + height +
+			$("video").before("<iframe src='http://localhost:3000/playbutton.html?" +
+				encodeURIComponent(vid) + "' width='" + width + "' height='" + height +
 				"' style='border: 0;'></iframe>");
 			$("video").remove();
 		},
