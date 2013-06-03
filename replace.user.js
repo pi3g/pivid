@@ -7,6 +7,7 @@ function main() {
 
 		// if none of the above apply try html5 video
 		"html5": function () {
+			/*
 			var vid = ""
 			$("video").find("source").each(function() {
 				var src = $(this).attr("src");
@@ -19,7 +20,14 @@ function main() {
 			$("video").before("<iframe src='http://localhost:3000/playbutton.html?" +
 				encodeURIComponent(vid) + "' width='" + width + "' height='" + height +
 				"' style='border: 0;'></iframe>");
-			$("video").remove();
+			*/
+			var width = $("video").width();
+			var height = $("video").height();
+			var iframe = $("<iframe src='http://localhost:3000/playbutton.html?" +
+				encodeURIComponent(window.location) + "' width='" + width + "' height='" + height +
+				"' style='border: 0;'></iframe>")
+			$("video").replaceWith(iframe);
+			
 		},
 	};
 
