@@ -12,13 +12,15 @@ app.configure(function() {
 });
 
 // route for direct video location
-app.get('/video/play/generic/:vid'), function(req, res) {
+app.get('/video/play/direct/:vid', function(req, res) {
+	console.log("direct");
 	play(req.params.vid);
 	res.send(200);
-}
+});
 
 // try to find a html5 video element
 app.get('/video/play/html5/:vid', function(req, res){
+	console.log("html5");
 	parsed = url.parse(req.params.vid)
 	var options = {
 		host: parsed['host'],
@@ -47,8 +49,19 @@ app.get('/video/play/html5/:vid', function(req, res){
 }); 
 
 // use youtube-dl to find video location
-app.get('/video/play/html5/:vid', function(req, res){
-	console.log(req.params.vid);
+app.get('/video/play/youtube/:vid', function(req, res){
+	console.log("youtube");
+	// add proper logic here
+	play(req.params.vid);
+	res.send(200);
+}); 
+
+// get veehd video location
+app.get('/video/play/veehd/:vid', function(req, res){
+	console.log("veehd");
+	// add proper logic here
+	play(req.params.vid);
+	res.send(200);
 }); 
 
 // default route
@@ -58,8 +71,9 @@ app.get('*', function(req, res){
 
 // play video with known location
 function play(vid) {
+	//for development this is more useful
 	console.log(vid);
-	//exec("vlc " + vid);
+	//exec("omxplayer " + vid);
 }
 
 app.listen(3000);
