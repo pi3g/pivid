@@ -1,0 +1,2 @@
+**Don't run install.sh on a system you care about!** I have not tested it. Think of
+it as documentation.
