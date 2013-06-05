@@ -6,11 +6,11 @@ if (vid) {
 }
 
 function isDirect(vid) {
-	return /.mp4$/.test(vid);
+	return /\.mp4$/.test(decodeURIComponent(vid));
 }
 
 function isYoutube(vid) {
-	return false;
+	return /^https?:\/\/www\.youtube\.com/.test(decodeURIComponent(vid));
 }
 
 function isVeehd(vid) {
