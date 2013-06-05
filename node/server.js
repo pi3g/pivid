@@ -51,9 +51,18 @@ app.get('/video/play/html5/:vid', function(req, res){
 // use youtube-dl to find video location
 app.get('/video/play/youtube/:vid', function(req, res){
 	console.log("youtube");
-	// add proper logic here
-	play(req.params.vid);
-	res.send(200);
+	var vid
+	exec('youtube-dl -g --max-quality mp4 ' + req.params.vid, function(error, stdout, stderr) {
+		if (!error) {
+			vid = stdout;
+			play(vid.replace(/\n/, ''));
+			res.send(200);
+		}
+		else {
+			console.log('youtube-dl error: ' + stderr);
+			res.send("couldn't get video address");
+		}
+	});
 }); 
 
 // get veehd video location
@@ -73,7 +82,7 @@ app.get('*', function(req, res){
 function play(vid) {
 	//for development this is more useful
 	console.log(vid);
-	//exec("omxplayer " + vid);
+	exec("omxplayer '" + vid + "'");
 }
 
 app.listen(3000);
