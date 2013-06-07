@@ -1,6 +1,15 @@
 function main() {
 	// define site specific handlers
 	var handlers = {
+		"veehd.com": function () {
+			var width = $("#preview").width();
+			var height = $("#preview").height();
+			var iframe = $("<iframe src='http://localhost:3000/playbutton.html?" +
+				encodeURIComponent(window.location) + "' width='" + width + "' height='" + height +
+				"' style='border: 0;'></iframe>");
+			$("#preview").replaceWith(iframe);
+		},
+
 		"www.youtube.com": function () {
 			var width = $("#movie_player").width();
 			var height = $("#movie_player").height();

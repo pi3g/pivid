@@ -61,10 +61,64 @@ app.get('/video/play/youtube/:vid', function(req, res){
 // get veehd video location
 app.get('/video/play/veehd/:vid', function(req, res){
 	console.log("veehd");
-	// add proper logic here
-	play(req.params.vid);
-	res.send(200);
+	parsed = url.parse(req.params.vid)
+	var options = {
+		host: parsed['host'],
+		port: 80,
+		path: parsed['path'],
+	};
+
+	var html = '';
+	http.get(options, function(remres) {
+		remres.on('data', function(data) {
+			html += data;
+		}).on('end', function() {
+			var framesrc = "";
+			framesrc = $.grep(html.split('\n'), function(elem, index) {
+				return /("#playeriframe")/.test(elem);
+			})[1];
+			framesrc = /\/vpi[^"]*/.exec(framesrc)[0];
+
+
+			options['path'] = framesrc;
+			var framehtml = '';
+			http.get(options, function(remres) {
+				remres.on('data', function(data) {
+					framehtml += data;
+				}).on('end', function() {
+					var vid = $(framehtml).find("a").get(0).href;
+					play("http://localhost:3000/veehdproxy/" + encodeURIComponent(parsed['host'] + framesrc) + "/" + encodeURIComponent(vid));
+					res.send(200);
+				});
+			}).on('error', function() {
+				res.send("can't find video location");
+			});
+		});
+	}).on('error', function() {
+		res.send("can't find video location");
+	});
 }); 
+
+// proxy route for veehd
+// veehd links need to be proxied to fake the referer
+app.get('/veehdproxy/:ref/:vid', function(req, res){
+	parsed = url.parse(req.params.vid);
+	var options = {
+		host: parsed['host'],
+		port: 80,
+		path: parsed['path'],
+		headers: {'Referer': req.params.ref},
+	};
+	http.get(options, function(reqres) {
+		reqres.on('data', function (chunk) {
+			res.write(chunk);
+		}).on('end', function() {
+			res.end();
+		});
+	}).on('error', function(e) {
+		res.send(404);
+	});
+});
 
 // default route
 app.get('*', function(req, res){

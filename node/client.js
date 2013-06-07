@@ -14,7 +14,7 @@ function isYoutube(vid) {
 }
 
 function isVeehd(vid) {
-	return false;
+	return /^https?:\/\/veehd\.com/.test(decodeURIComponent(vid));
 }
 
 function play() {
