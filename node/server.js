@@ -21,15 +21,8 @@ app.get('/video/play/direct/:vid', function(req, res) {
 // try to find a html5 video element
 app.get('/video/play/html5/:vid', function(req, res){
 	console.log("html5");
-	parsed = url.parse(req.params.vid)
-	var options = {
-		host: parsed['host'],
-		port: 80,
-		path: parsed['path'],
-	};
-
 	var html = '';
-	http.get(options, function(remres) {
+	http.get(req.params.vid, function(remres) {
 		remres.on('data', function(data) {
 			html += data;
 		}).on('end', function() {
@@ -81,7 +74,7 @@ app.get('*', function(req, res){
 // play video with known location
 function play(vid) {
 	//for development this is more useful
-	console.log(vid);
+	console.log("play: " + vid);
 	exec("omxplayer '" + vid + "'");
 }
 
