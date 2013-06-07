@@ -2,7 +2,12 @@ function main() {
 	// define site specific handlers
 	var handlers = {
 		"www.youtube.com": function () {
-			console.log("yt");
+			var width = $("#movie_player").width();
+			var height = $("#movie_player").height();
+			var iframe = $("<iframe src='http://localhost:3000/playbutton.html?" +
+				encodeURIComponent(window.location) + "' width='" + width + "' height='" + height +
+				"' style='border: 0;'></iframe>");
+			$("#movie_player").replaceWith(iframe);
 		},
 
 		// if none of the above apply try html5 video
