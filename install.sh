@@ -13,3 +13,6 @@ PATH="$PATH:$NODE_JS_HOME/bin"
 cd pivid/node
 /opt/node/bin/npm install express
 /opt/node/bin/npm install jquery
+sudo apt-get install youtube-dl
+sudo youtube-dl --update #might be needed twice
+sudo youtube-dl --update #just to be sure
