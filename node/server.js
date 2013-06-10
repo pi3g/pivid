@@ -127,9 +127,9 @@ app.get('*', function(req, res){
 
 // play video with known location
 function play(vid) {
-	//for development this is more useful
 	console.log("play: " + vid);
-	exec("omxplayer '" + vid + "'");
+	//wrap in lxterminal for control
+	exec("lxterminal -e \"omxplayer '" + vid + "'\"");
 }
 
 app.listen(3000);
