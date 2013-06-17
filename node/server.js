@@ -136,7 +136,7 @@ app.get('*', function(req, res){
 function play(vid) {
 	console.log("play: " + vid);
 	//wrap in lxterminal for control
-	exec("lxterminal -e \"omxplayer '" + vid + "'\"");
+	exec("~/pivid/playcommand.sh " + vid);
 }
 
 app.listen(3000);
