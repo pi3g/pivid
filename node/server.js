@@ -58,16 +58,23 @@ app.get('/video/play/youtube/:vid', function(req, res){
 	});
 }); 
 
-// get veehd video location
+// get veehd video location (only works for videos that work without login and
+// direct veehd links)
 app.get('/video/play/veehd/:vid', function(req, res){
 	console.log("veehd");
 	parsed = url.parse(req.params.vid)
+
+	if (/^https?:\/\/v40\./.test(req.params.vid)) {
+		play("http://localhost:3000/veehdproxy/" + encodeURIComponent(parsed['host']) + "/" + encodeURIComponent(req.params.vid));
+		res.send(200);
+		return;
+	}
+
 	var options = {
 		host: parsed['host'],
 		port: 80,
 		path: parsed['path'],
 	};
-
 	var html = '';
 	http.get(options, function(remres) {
 		remres.on('data', function(data) {

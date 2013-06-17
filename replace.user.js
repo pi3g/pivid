@@ -2,12 +2,16 @@ function main() {
 	// define site specific handlers
 	var handlers = {
 		"veehd.com": function () {
-			var width = $("#preview").width();
-			var height = $("#preview").height();
-			var iframe = $("<iframe src='http://localhost:3000/playbutton.html?" +
-				encodeURIComponent(window.location) + "' width='" + width + "' height='" + height +
-				"' style='border: 0;'></iframe>");
-			$("#preview").replaceWith(iframe);
+			var src;
+			$("#playeriframe").load(function () {
+				console.log("load");
+				if (!src) {
+					src = $("#playeriframe").contents().find("a")[0].href;
+					console.log(src);
+					$("#playeriframe").attr('src', 'http://localhost:3000/playbutton.html?' + encodeURIComponent(src));
+				}
+			});
+			play('download');
 		},
 
 		"www.youtube.com": function () {
