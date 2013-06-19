@@ -1,2 +1,43 @@
+# Warning
 **Don't run install.sh on a system you care about!** I have not tested it. Think of
 it as documentation.
+
+
+# Example links
+- [html5](http://www.w3.org/2010/05/video/mediaevents.html)
+- [youtube](http://www.youtube.com/watch?v=eRsGyueVLvQ)
+- [veehd flash](http://veehd.com/video/4531775_Sintel-2010)
+- [veehd vidx](http://veehd.com/video/4531775_Sintel-2010)
+
+
+# API reference
+## video playback
+
+### /video/play/direct/:vid
+
+**vid:** video location
+
+Start playback of a video with known location. Veehd videos are proxied and have
+their referrer changed to fool veehd.com.
+
+### /video/play/html5/:vid
+
+**vid:** url of a website with html5 video tags
+
+Start playback of a video embedded with html5 video tags. The video location is
+automatically extracted from the video tags.
+
+### /video/play/youtube/:vid
+
+**vid:** youtube video page
+
+Start playback of a youtube video. The video location is acquired by
+`youtube-dl`.
+
+### /video/play/veehd/:vid
+
+**vid:** veehd video page or location of a veehd video
+
+Start playback of a veehd video. The video location is extracted automatically
+if no login is required. Otherwise try to find the video location in the browser
+and use `/video/play/direct/:vid`.
