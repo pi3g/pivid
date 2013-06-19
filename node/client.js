@@ -6,7 +6,7 @@ if (vid) {
 }
 
 function isDirect(vid) {
-	return /\.mp4$/.test(decodeURIComponent(vid));
+	return /\.(mp4|avi)[&$]?/.test(decodeURIComponent(vid));
 }
 
 function isYoutube(vid) {
@@ -14,7 +14,7 @@ function isYoutube(vid) {
 }
 
 function isVeehd(vid) {
-	return /^https?:\/\/(.*\.)?veehd\.com/.test(decodeURIComponent(vid));
+	return /^https?:\/\/veehd\.com/.test(decodeURIComponent(vid));
 }
 
 function play() {

@@ -14,7 +14,14 @@ app.configure(function() {
 // route for direct video location
 app.get('/video/play/direct/:vid', function(req, res) {
 	console.log("direct");
-	play(req.params.vid);
+	var parsed = url.parse(req.params.vid);
+	var vid = req.params.vid;
+
+	if (/^https?:\/\/v\d\d\.veehd\.com/.test(req.params.vid)) {
+		vid = "http://localhost:3000/veehdproxy/" + encodeURIComponent(parsed['host']) + "/" + encodeURIComponent(req.params.vid);
+	}
+
+	play(vid);
 	res.send(200);
 });
 
@@ -63,12 +70,6 @@ app.get('/video/play/youtube/:vid', function(req, res){
 app.get('/video/play/veehd/:vid', function(req, res){
 	console.log("veehd");
 	parsed = url.parse(req.params.vid)
-
-	if (/^https?:\/\/v40\./.test(req.params.vid)) {
-		play("http://localhost:3000/veehdproxy/" + encodeURIComponent(parsed['host']) + "/" + encodeURIComponent(req.params.vid));
-		res.send(200);
-		return;
-	}
 
 	var options = {
 		host: parsed['host'],
