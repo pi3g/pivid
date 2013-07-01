@@ -15,12 +15,12 @@ function main() {
 		},
 
 		"www.youtube.com": function () {
-			var width = $("#movie_player").width();
-			var height = $("#movie_player").height();
+			var width = $("#player-api").width();
+			var height = $("#player-api").height();
 			var iframe = $("<iframe src='http://localhost:3000/playbutton.html?" +
 				encodeURIComponent(window.location) + "' width='" + width + "' height='" + height +
 				"' style='border: 0;'></iframe>");
-			$("#movie_player").replaceWith(iframe);
+			$("#player-api").replaceWith(iframe);
 		},
 
 		// if none of the above apply try html5 video
