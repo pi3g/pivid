@@ -1,0 +1,24 @@
+body {
+	background: black;
+}
+
+#powered-by {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}
+
+.control-button {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -65px;
+	margin-top: -65px;
+}
+
+#vidurl {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+}

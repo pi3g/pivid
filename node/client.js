@@ -42,5 +42,15 @@ function play() {
 		console.log("html5");
 		url = '/video/play/html5/' + vid;
 	}
-	$.get(url); 
+	$.get(url, function(data, text){
+		console.log(data);
+		console.log(text);
+		if (data == 'OK') {
+			var pause = $('<a href="#" onclick="pause();" class="control-button"><img src="img/pause.jpg" alt="pause" /></a>');
+			$('.control-button').replaceWith(pause);
+		}
+	}); 
+};
+
+function pause() {
 };
