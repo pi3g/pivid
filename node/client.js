@@ -6,15 +6,15 @@ if (vid) {
 }
 
 function isDirect(vid) {
-	return /\.(mp4|avi)[&$]?/.test(decodeURIComponent(vid));
+	return /\.(mp4|avi)[&$]?/.test($.trim(decodeURIComponent(vid)));
 }
 
 function isYoutube(vid) {
-	return /^https?:\/\/www\.youtube\.com/.test(decodeURIComponent(vid));
+	return /^https?:\/\/www\.youtube\.com/.test($.trim(decodeURIComponent(vid)));
 }
 
 function isVeehd(vid) {
-	return /^https?:\/\/veehd\.com/.test(decodeURIComponent(vid));
+	return /^https?:\/\/veehd\.com/.test($.trim(decodeURIComponent(vid)));
 }
 
 function play() {
