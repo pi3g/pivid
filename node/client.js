@@ -18,6 +18,8 @@ function isVeehd(vid) {
 }
 
 function play() {
+	$('.control-button').css('opacity', '0.5');
+	$('.control-button').attr('onclick', '')
 	if (!vid) {
 		vid = encodeURIComponent(document.getElementById("vidurl").value);
 	}
