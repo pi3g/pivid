@@ -4,6 +4,7 @@ var $ = require('jquery');
 var express = require('express');
 var exec = require('child_process').exec;
 
+process.title = 'pivid'
 var app = express();
 
 app.configure(function() {
