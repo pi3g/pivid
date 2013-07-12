@@ -1,6 +1,5 @@
-# Warning
-**Don't run install.sh on a system you care about!** I have not tested it. Think of
-it as documentation.
+# Installation
+See [pividpkg](https://github.com/pi3g/pivid) for instructions.
 
 
 # Example links
