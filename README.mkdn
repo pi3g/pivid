@@ -1,5 +1,5 @@
 # Installation
-See [pividpkg](https://github.com/pi3g/pivid) for instructions.
+See [pividpkg](https://github.com/pi3g/pividpkg) for instructions.
 
 
 # Example links
