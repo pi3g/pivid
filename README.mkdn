@@ -1,6 +1,20 @@
 # Installation
 See [pividpkg](https://github.com/pi3g/pividpkg) for instructions.
 
+# Usage
+## Running PiVid
+To start using PiVid you can now either simply run it:
+
+    $ pivid
+    
+or start it as a daemon in the background:
+
+    $ service pivid start
+
+## Running PiVid on boot
+To have your Raspberry Pi start PiVid for you during the boot process, run:
+
+    $ sudo update-rc.d pivid defaults
 
 # Example links
 - [html5](http://www.w3.org/2010/05/video/mediaevents.html)
