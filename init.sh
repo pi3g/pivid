@@ -4,9 +4,9 @@
 # Required-Start:    
 # Required-Stop:     
 # Should-Start:      networking
-# Should-stop:       networking
-# Default-Start:     5
-# Default-Stop:      0 1 2
+# Should-Stop:       networking
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
 # Short-Description: Control PiVid as a daemon.
 ### END INIT INFO
 
