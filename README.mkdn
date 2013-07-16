@@ -4,22 +4,22 @@ PiVid consists of two parts:
 - a server backend that finds out where the video is and launches omxplayer
 - a userscript that replaces videos in your browser with a play-button
 
+## Backend
+See [pividpkg](https://github.com/pi3g/pividpkg) for instructions on how to install the server part.
+
 ## Frontend
 ### Midori
-To use the userscript in Midori (Raspbians default browser), you have to activate the "User addons" extension. Open the preferences dialog (Menu>Preferences), select the Extensions tab and tick "User addons". Then simply open [the script](https://raw.github.com/pi3g/pivid/master/replace.user.js) in your browser and click "Install user script" when asked.
+To use the userscript in Midori (Raspbians default browser), you have to activate the "User addons" extension. Open the preferences dialog (Menu>Preferences), select the Extensions tab and tick "User addons". Then simply open [the script](file:///usr/share/pivid/replace.user.js) in your browser and click "Install user script" when asked.
 
 ### Chromium
 To install the userscript in chromium launch the browser like this:
 
-    $ chromium --enable-easy-off-store-extension-install
+    $ chromium --enable-easy-off-store-extension-install /usr/share/pivid/replace.user.js
     
-Navigate to [the script](https://raw.github.com/pi3g/pivid/master/replace.user.js) and follow Chromiums instructions ("Continue" and "Add").
+and follow Chromiums instructions ("Continue" and "Add").
 
 ### Other browsers
 If you're using a different browser, check its documentation to find out how userscripts are installed.
-
-## Backend
-See [pividpkg](https://github.com/pi3g/pividpkg) for instructions on how to install the server part.
 
 # Usage
 ## Running PiVid
