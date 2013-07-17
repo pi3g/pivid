@@ -32,7 +32,7 @@ case "$1" in
 		log_end_msg $?
 		;;
 	status)
-		status_of_proc "$DAEMON" pivid && exit 0 || exit $?
+		status_of_proc /usr/bin/node pivid && exit 0 || exit $?
 		;;
 	restart)
 		$0 stop
