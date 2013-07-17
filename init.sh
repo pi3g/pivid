@@ -13,26 +13,30 @@
 
 DAEMON=/usr/bin/pivid
 test -x $DAEMON || exit 0
+EXE=/usr/bin/node
+NAME=pivid
 
 . /lib/lsb/init-functions
 
 case "$1" in
 	start|"")
-		log_daemon_msg "Starting PiVid" "pivid"
-		start-stop-daemon --quiet --start --startas $DAEMON --name pivid --background --exec /usr/bin/node || echo -n " already running"
-                log_end_msg $?
+		log_daemon_msg "Starting PiVid" "$NAME"
+		start-stop-daemon --quiet --start --startas $DAEMON --name $NAME \
+			--background --exec $EXE || echo -n " already running"
+		log_end_msg $?
 		;;
 	reload|force-reload)
 		echo "Error: argument '$1' not supported" >&2
 		exit 3
 		;;
 	stop)
-		log_daemon_msg "Stopping PiVid" "pivid"
-		start-stop-daemon --quiet --stop --signal INT --name pivid --exec /usr/bin/node --retry 5
+		log_daemon_msg "Stopping PiVid" "$NAME"
+		start-stop-daemon --quiet --stop --signal INT --name $NAME --exec $EXE \
+			--retry 5
 		log_end_msg $?
 		;;
 	status)
-		status_of_proc /usr/bin/node pivid && exit 0 || exit $?
+		status_of_proc $EXE $NAME && exit 0 || exit $?
 		;;
 	restart)
 		$0 stop
