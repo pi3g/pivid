@@ -5,6 +5,9 @@ var express = require('express');
 var exec = require('child_process').exec;
 
 process.title = 'pivid'
+process.on('SIGINT', function() {
+	process.exit(0);
+});
 var app = express();
 
 app.configure(function() {

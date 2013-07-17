@@ -19,7 +19,7 @@ test -x $DAEMON || exit 0
 case "$1" in
 	start|"")
 		log_daemon_msg "Starting PiVid" "pivid"
-		start-stop-daemon --quiet --start --name pivid --background --exec $DAEMON || echo -n " already running"
+		start-stop-daemon --quiet --start --startas $DAEMON --name pivid --background --exec /usr/bin/node || echo -n " already running"
                 log_end_msg $?
 		;;
 	reload|force-reload)
@@ -28,7 +28,7 @@ case "$1" in
 		;;
 	stop)
 		log_daemon_msg "Stopping PiVid" "pivid"
-		start-stop-daemon --quiet --stop --name pivid --retry 5
+		start-stop-daemon --quiet --stop --signal INT --name pivid --exec /usr/bin/node --retry 5
 		log_end_msg $?
 		;;
 	status)
