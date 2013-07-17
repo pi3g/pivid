@@ -122,11 +122,7 @@ app.get('/veehdproxy/:ref/:vid', function(req, res){
 		headers: {'Referer': req.params.ref},
 	};
 	http.get(options, function(reqres) {
-		reqres.on('data', function (chunk) {
-			res.write(chunk);
-		}).on('end', function() {
-			res.end();
-		});
+		reqres.pipe(res)
 	}).on('error', function(e) {
 		res.send(404);
 	});
