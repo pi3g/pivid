@@ -1,3 +1,12 @@
+var version = "0.0.2"
+
+process.argv.forEach(function(val, index, array) {
+	if (val == "-v" | val == "--version" ) {
+		console.log(version);
+		process.exit(0);
+	}
+});
+
 var http = require('http');
 var url = require('url');
 var $ = require('jquery');
