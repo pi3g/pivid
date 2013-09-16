@@ -1,4 +1,4 @@
-var version = "0.0.2"
+var version = "0.0.3"
 
 process.argv.forEach(function(val, index, array) {
 	if (val == "-v" | val == "--version" ) {
