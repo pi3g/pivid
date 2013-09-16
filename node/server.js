@@ -135,10 +135,13 @@ app.get('*', function(req, res){
 
 // play video with known location
 function play(vid) {
-	console.log("play: " + vid);
+	console.log("play (url length): " + vid.length);
 	//wrap in lxterminal for control
-	exec("./playcommand.sh '" + vid + "'");
+	exec("./playcommand.sh '" + vid + "'", function(error, stdout, stderr) {
+		console.log("subprocess output:");
+		console.log(stdout + stderr + "subprocess done");
+	});
 }
 
 app.listen(3000);
-console.log('App Server running at port 3000');
+console.log('PiVid listening on port 3000');

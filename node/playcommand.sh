@@ -13,6 +13,7 @@ ck_display_user() {
 }
 
 # get the display owner and permission to use it
+echo "acquiring display"
 display_user="$(who | grep ':0.0' | cut -d ' ' -f 1)"
 if [ -z "$display_user" ]
 then
@@ -27,3 +28,4 @@ fi
 
 echo "running player"
 lxterminal -e "omxplayer $vid" && xrefresh
+echo "done"
