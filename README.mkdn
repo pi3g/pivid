@@ -36,6 +36,10 @@ To have your Raspberry Pi start PiVid for you during the boot process, run:
 
     $ sudo update-rc.d pivid defaults
 
+## Logging
+
+PiVids output is logged to `/var/log/pivid.log` when started as a service. Including the logfile in bug reports will help us find the root of the Problem.
+
 # Example links
 - [html5](http://www.w3.org/2010/05/video/mediaevents.html)
 - [youtube](http://www.youtube.com/watch?v=eRsGyueVLvQ)
