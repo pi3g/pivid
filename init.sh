@@ -21,8 +21,9 @@ NAME=pivid
 case "$1" in
 	start|"")
 		log_daemon_msg "Starting PiVid" "$NAME"
-		start-stop-daemon --quiet --start --startas $DAEMON --name $NAME \
-			--background --exec $EXE || echo -n " already running"
+		start-stop-daemon --no-close --quiet --start --startas "$DAEMON" \
+			--name $NAME --background --exec $EXE -- \
+			> /var/log/pivid.log || echo -n " already running"
 		log_end_msg $?
 		;;
 	reload|force-reload)
