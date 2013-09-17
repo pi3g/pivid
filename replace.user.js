@@ -25,20 +25,6 @@ function main() {
 
 		// if none of the above apply try html5 video
 		"html5": function () {
-			/*
-			var vid = ""
-			$("video").find("source").each(function() {
-				var src = $(this).attr("src");
-				if (/.mp4$/.test(src)) {
-					vid = src;
-				}
-			});
-			var width = $("video").width()
-			var height = $("video").height()
-			$("video").before("<iframe src='http://localhost:3000/playbutton.html?" +
-				encodeURIComponent(vid) + "' width='" + width + "' height='" + height +
-				"' style='border: 0;'></iframe>");
-			*/
 			var width = $("video").width();
 			var height = $("video").height();
 			var iframe = $("<iframe src='http://localhost:3000/playbutton.html?" +
